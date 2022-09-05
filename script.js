@@ -11,12 +11,12 @@ pincel.lineWidth = 5;
 pincel.stroke();
 
 pincel.beginPath(); //madera horizontal
-pincel.moveTo(280, 40);
+pincel.moveTo(278, 40);
 pincel.lineTo(453, 40);
 pincel.stroke();
 
 pincel.beginPath(); //Cuerda
-pincel.moveTo(453, 40);
+pincel.moveTo(453, 37);
 pincel.lineTo(453, 89);
 pincel.stroke();
 
