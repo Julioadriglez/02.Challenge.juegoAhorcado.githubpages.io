@@ -1,7 +1,26 @@
 var pantalla = document.querySelector("canvas");
 var pincel = pantalla.getContext("2d");
 
-pincel.strokeStyle= "#0A3871";// suelo y madera vertical
+var moveToX = [3,85,80,262,262,262,262,262,262];
+var lineToX = [297,85,267,262,262,297,227,297,227];
+var moveToY = [365,5,5,5,117,117,117,252,252];
+var lineToY = [365,365,5,54,252,189,189,324,324];
+
+function trazarFigura(x1,x2,y1,y2){
+    pincel.strokeStyle= "#0A3871"
+    pincel.beginPath();
+    pincel.moveTo(x1,y1);
+    pincel.lineTo(x2,y2);
+    pincel.lineWidth = 10;
+    pincel.stroke();
+}
+trazarFigura(moveToX[0],lineToX[0],moveToY[0],lineToY[0])
+
+for(var i = 1;i<= 8; i ++){
+    trazarFigura(moveToX[i],lineToX[i],moveToY[i],lineToY[i])
+}
+
+/* pincel.strokeStyle= "#0A3871";// suelo y madera vertical
 pincel.beginPath();
 pincel.moveTo(3,365);
 pincel.lineTo(297,365);
@@ -20,14 +39,14 @@ pincel.strokeStyle= "#0A3871";
 pincel.beginPath(); //Cuerda
 pincel.moveTo(262, 5);
 pincel.lineTo(262, 54);
-pincel.stroke();
+pincel.stroke(); */
 
 pincel.strokeStyle= "#0A3871";
 pincel.beginPath(); //Cabeza
 pincel.arc(262,85.5,31.5,0,2*3.14);
 pincel.stroke();
 
-pincel.strokeStyle= "#0A3871";
+/* pincel.strokeStyle= "#0A3871";
 pincel.beginPath(); // Cuerpo
 pincel.moveTo(262, 117);
 pincel.lineTo(262, 252);
@@ -55,7 +74,7 @@ pincel.strokeStyle= "#0A3871";
 pincel.beginPath(); //Pie derecho
 pincel.moveTo(262, 252);
 pincel.lineTo(227, 324);
-pincel.stroke();
+pincel.stroke(); */
 
 var numeroPalabras = ["cero","uno","dos","tres","cuatro"]
 
