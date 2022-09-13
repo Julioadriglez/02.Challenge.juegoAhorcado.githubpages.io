@@ -7,7 +7,14 @@ var moveToY = [365,5,5,5,117,117,117,252,252];
 var lineToY = [365,365,5,54,252,189,189,324,324];
 
 let palabrasSecretas = ["COMPILADOR","JAVASCRIPT","CODIGO","PROGRAMACION","GITHUB"];
-let palabraSecreta = "hftgyu56";
+let palabraSecreta = "";
+
+function sorteoPalabra(){
+    let palabraAleatoria = palabrasSecretas[Math.floor(Math.random()*palabrasSecretas.length)];
+    palabraSecreta = palabraAleatoria;
+    console.log(palabraSecreta);
+}
+
 
 function trazarFigura(x1,x2,y1,y2){
     pincel.strokeStyle= "#0A3871"
@@ -39,19 +46,20 @@ function dibujarGuion(){
 dibujarGuion();
 
 
-trazarFigura(moveToX[0],lineToX[0],moveToY[0],lineToY[0])
 
+trazarFigura(moveToX[0],lineToX[0],moveToY[0],lineToY[0]);
+// cuerpo
 for(var i = 1;i<= 8; i ++){
-    trazarFigura(moveToX[i],lineToX[i],moveToY[i],lineToY[i])
+    trazarFigura(moveToX[i],lineToX[i],moveToY[i],lineToY[i]);
 }
 
-
+ //Cabeza
 pincel.strokeStyle= "#0A3871";
-pincel.beginPath(); //Cabeza
+pincel.beginPath();
 pincel.arc(762,85.5,31.5,0,2*3.14);
 pincel.stroke();
 
-texto = "Hola mundo";
+texto = "H";
 
 function dibujarTexto(texto,textoX,textoY){
 pincel.beginPath();
