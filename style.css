@@ -1,13 +1,13 @@
 body{
     width: 100%;
     height: 100%;
-    background: aquamarine;
     display: grid;
     place-items: center;
 }
+
 .contenedor-logo{
     width: 100%;
-    display: grid;
+    display: flex;
     text-align: right;
  }
 
@@ -17,15 +17,15 @@ body{
     margin: 40px 0 0 84px;
 }
 
-
 .main-index{
     width: 100%;
-    background-color: blue;
-
-    
+    margin-top: 10%;
+    text-align: center;
+    align-items: center;
 }
 
 .iniciar-juego{
+    margin: 1%;
     background: #0A3871;
     color: white;
     font-size: 18px;
@@ -35,11 +35,22 @@ body{
     font-weight:bold;
     width: 317px;
     height: 67px;
-    border: 1px solid #0A3871;
+    border: 2px solid #0A3871;
     border-radius: 15px;
+    transition: 1s all; /*all para que aplique la transicion a todo enviar*/
+    cursor: pointer;
+
+}
+
+.iniciar-juego:hover{
+    background: rgb(255, 99, 9);
+    transform: scale(1.2); /*aumenta el tamano del boton o escala */
+    color: black;
+    
 }
 
 .nueva-palabra{
+    margin: 1%;
     background: white;
     color: #0A3871;
     font-size: 18px;
@@ -49,8 +60,17 @@ body{
     font-weight:bold;
     width: 280px;
     height: 67px;
-    border: 1px solid #0A3871;
+    border: 2px solid #0A3871;
     border-radius: 15px;
+    transition: 1s all; /*all para que aplique la transicion a todo enviar*/
+    cursor: pointer;
+
+}
+
+.nueva-palabra:hover{
+    background: rgb(255, 99, 9);
+    transform: scale(1.2); /*aumenta el tamano del boton o escala */
+    color: black;
 }
 
 /*iniciarjuego.html*/
@@ -61,11 +81,13 @@ body{
 }
 
 .contenedor-muneco{
-    padding: 1%;
+    display: flex;
 }
+
 canvas{
     background-color: antiquewhite;
 }
+
 .nuevo-juego{
     background: #0A3871;
     color: white;
@@ -76,9 +98,16 @@ canvas{
     font-weight:bold;
     width: 317px;
     height: 67px;
-    border: 1px solid #0A3871;
+    border: 2px solid #0A3871;
     border-radius: 15px;
+    transition: 1s all; /*all para que aplique la transicion a todo enviar*/
+    cursor: pointer;
+}
 
+.nuevo-juego:hover{
+    background: rgb(255, 99, 9);
+    transform: scale(1.2); /*aumenta el tamano del boton o escala */
+    color: black;
 }
 
 .rendirse{
@@ -86,14 +115,22 @@ canvas{
     color:#0A3871;
     font-size: 18px;
     padding: 24px;
-    margin-left: 10px;
+    margin-left: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-style: normal;
     font-weight:bold;
     width: 317px;
     height: 67px;
-    border: 1px solid #0A3871;
+    border: 2px solid #0A3871;
     border-radius: 15px;
+    transition: 1s all; /*all para que aplique la transicion a todo enviar*/
+    cursor: pointer;
+}
+
+.rendirse:hover{
+    background: rgb(255, 99, 9);
+    transform: scale(1.2); /*aumenta el tamano del boton o escala */
+    color: black;
 }
 
 
