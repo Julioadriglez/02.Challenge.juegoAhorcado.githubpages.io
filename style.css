@@ -1,19 +1,18 @@
 body{
     width: 100%;
     height: 100%;
-    display: grid;
+    background-size: 100%;
     place-items: center;
 }
 
 .contenedor-logo{
-    width: 100%;
-    display: flex;
-    text-align: right;
+    
+    text-align: left;
  }
 
 .logo{
-    width: 80px;
-    height: 48px;
+    width: 70px;
+    height: 30px;
     margin: 40px 0 0 84px;
 }
 
@@ -39,6 +38,7 @@ body{
     border-radius: 15px;
     transition: 1s all; /*all para que aplique la transicion a todo enviar*/
     cursor: pointer;
+    opacity: .6;
 
 }
 
@@ -64,6 +64,7 @@ body{
     border-radius: 15px;
     transition: 1s all; /*all para que aplique la transicion a todo enviar*/
     cursor: pointer;
+    opacity: .6;
 
 }
 
@@ -76,17 +77,11 @@ body{
 /*iniciarjuego.html*/
 
 .muneco-botones{
+    margin-bottom: 20px;
     text-align: center;
     align-items: center;
 }
 
-.contenedor-muneco{
-    display: flex;
-}
-
-canvas{
-    background-color: antiquewhite;
-}
 
 .nuevo-juego{
     background: #0A3871;
@@ -102,6 +97,7 @@ canvas{
     border-radius: 15px;
     transition: 1s all; /*all para que aplique la transicion a todo enviar*/
     cursor: pointer;
+    opacity: .6;
 }
 
 .nuevo-juego:hover{
@@ -125,6 +121,7 @@ canvas{
     border-radius: 15px;
     transition: 1s all; /*all para que aplique la transicion a todo enviar*/
     cursor: pointer;
+    opacity: .6;
 }
 
 .rendirse:hover{
@@ -133,6 +130,25 @@ canvas{
     color: black;
 }
 
+footer{
+    padding: 30px;
+    display: flex;
+    background: #0a387193;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.div-iconos{
+    width: 200px;
+    color: antiquewhite;
+
+}
+
+.iconos-redes{
+    width: 200px;
+    opacity: .9;
+}
 
 
 
