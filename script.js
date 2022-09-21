@@ -65,25 +65,29 @@ function dibujarTexto(texto) {
     }
 
 }
+ var msg = '';
+ 
+document.addEventListener('keydown',onKeyDown);
 
-function detectarLetrasTeclado(event) {
-    var canvas = document.getElementById('canvas');
-    var charCode = canvas.value;
-    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
-       alert(charCode);
-        dibujarLetrasIncorrecto(charCode);
-        return true;
-    }
-    else {
-        return false;
+function onKeyDown(evt){
+    var charCode = evt.key.toUpperCase();
+    var codigo = event.which || event.keyCode;
+
+    if(codigo >= 65 && codigo <= 90){
+      msg = msg += charCode;
+      dibujarLetrasIncorrecto(msg);
     }
 }
 
+var moverLetrasErroneas = 0;
+
 function dibujarLetrasIncorrecto(texto) {
     pincel.beginPath();
+    pincel.clearRect(300,450, 1000, 30);
     pincel.strokeStyle = "blue";
     pincel.font = "bold 40px arial";
-    pincel.fillText(texto, 360, 480)
+    pincel.fillText(texto, 300 , 480);
+    moverLetrasErroneas ++;
 }
 
 dibujarTexto(palabraSecreta);
