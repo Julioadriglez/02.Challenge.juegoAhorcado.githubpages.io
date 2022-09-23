@@ -6,9 +6,11 @@ var lineToX = [797, 585, 762, 762, 762, 797, 727, 797, 727];
 var moveToY = [365, 5, 5, 5, 117, 117, 117, 252, 252];
 var lineToY = [365, 365, 5, 54, 252, 189, 189, 324, 324];
 var intentos = 9;
+var errores = 9;
 
 let palabrasSecretas = ["COMPILAR", "JAVASCRIPT", "CODIGO", "PROGRAMA", "GITHUB", "ALURA", "ORACLE", "ONE", "AHORCADO", "ESTUDIO", "ASTROS", "MEDUSAS", "IRONMAN"];
 let palabraSecreta = "";
+var msg = '';
 
 
 function sorteoPalabra() {
@@ -56,28 +58,36 @@ dibujarGuion();
 
 trazarFigura(moveToX[0], lineToX[0], moveToY[0], lineToY[0]);
 
-function dibujarTexto(texto) {
+function dibujarTexto(texto,evt) {
     pincel.beginPath();
     pincel.strokeStyle = "blue";
     pincel.font = "bold 40px arial";
-    for (var i = 0; i < palabraSecreta.length; i++) {
-        pincel.fillText(texto[i], (360) + (80 * i), 420)
+    var charCode = evt.key.toUpperCase();
+    for( let i = 0; i < palabraSecreta.length;  i++ ){
+        if( charCode == palabraSecreta[i] ){
+            //la variable i es la posición de la letra en la palabra.
+            //que coincide con el span al que tenemos que mostarle esta letra...
+            pincel.fillText(texto[i], (360) + (80 * i), 420)
+            aciertos++;
+           
+        }
     }
-
 }
- var msg = '';
- 
+
+
 document.addEventListener('keydown',onKeyDown);
 
 function onKeyDown(evt){
     var charCode = evt.key.toUpperCase();
-    var codigo = event.which || event.keyCode;
-
+    var codigo = evt.which || evt.keyCode;
     if(codigo >= 65 && codigo <= 90){
-      msg = msg += charCode;
-      dibujarLetrasIncorrecto(msg);
-    }
+        
+            msg = msg += charCode;
+            dibujarLetrasIncorrecto(msg);
+        }
 }
+
+
 
 var moverLetrasErroneas = 0;
 
@@ -87,7 +97,6 @@ function dibujarLetrasIncorrecto(texto) {
     pincel.strokeStyle = "blue";
     pincel.font = "bold 40px arial";
     pincel.fillText(texto, 300 , 480);
-    moverLetrasErroneas ++;
 }
 
 dibujarTexto(palabraSecreta);
@@ -143,3 +152,18 @@ switch(intentos){
         trazarCabeza();
         break;
 }
+
+function resultadoJuego(intentos, errores){
+    if(errores = 9){
+        pincel.beginPath();
+        pincel.clearRect(300,450, 1000, 30);
+        pincel.strokeStyle = 'black';
+        pincel.fillStyle = 'red';
+        pincel.font = "bold 35px arial";
+        pincel.fillText('!Perdiste, Fin del Juego¡', 850 , 200);
+        pincel.fillText('La Palabra era:', 930 , 240);
+        pincel.fillText(palabraSecreta, 960 , 280);
+    }
+}
+
+resultadoJuego(intentos,errores);
