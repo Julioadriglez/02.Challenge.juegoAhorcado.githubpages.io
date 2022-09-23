@@ -5,8 +5,9 @@ var moveToX = [503, 585, 585, 762, 762, 762, 762, 762, 762];
 var lineToX = [797, 585, 762, 762, 762, 797, 727, 797, 727];
 var moveToY = [365, 5, 5, 5, 117, 117, 117, 252, 252];
 var lineToY = [365, 365, 5, 54, 252, 189, 189, 324, 324];
-var intentos = 9;
-var errores = 9;
+var aciertos = 0;
+var errores = 0;
+var charCode = '';
 
 let palabrasSecretas = ["COMPILAR", "JAVASCRIPT", "CODIGO", "PROGRAMA", "GITHUB", "ALURA", "ORACLE", "ONE", "AHORCADO", "ESTUDIO", "ASTROS", "MEDUSAS", "IRONMAN"];
 let palabraSecreta = "";
@@ -58,18 +59,14 @@ dibujarGuion();
 
 trazarFigura(moveToX[0], lineToX[0], moveToY[0], lineToY[0]);
 
-function dibujarTexto(texto,evt) {
+function dibujarTexto(texto) {
     pincel.beginPath();
     pincel.strokeStyle = "blue";
     pincel.font = "bold 40px arial";
-    var charCode = evt.key.toUpperCase();
-    for( let i = 0; i < palabraSecreta.length;  i++ ){
-        if( charCode == palabraSecreta[i] ){
-            //la variable i es la posición de la letra en la palabra.
-            //que coincide con el span al que tenemos que mostarle esta letra...
+    for( let i = 0; i < texto.length;i++ ){
+        if( charCode == texto[i] ){
             pincel.fillText(texto[i], (360) + (80 * i), 420)
             aciertos++;
-           
         }
     }
 }
@@ -78,18 +75,35 @@ function dibujarTexto(texto,evt) {
 document.addEventListener('keydown',onKeyDown);
 
 function onKeyDown(evt){
-    var charCode = evt.key.toUpperCase();
+    var acerto = false;
+    pincel.beginPath();
+    pincel.strokeStyle = "blue";
+    pincel.font = "bold 40px arial";
+    charCode = evt.key.toUpperCase();
     var codigo = evt.which || evt.keyCode;
+
     if(codigo >= 65 && codigo <= 90){
-        
-            msg = msg += charCode;
-            dibujarLetrasIncorrecto(msg);
+        msg = msg += charCode;
+        dibujarLetrasIncorrecto(msg);
+    }
+    for( let i = 0; i < palabraSecreta.length;i++ ){
+        if( charCode == palabraSecreta[i] ){
+            pincel.fillText(palabraSecreta[i], (360) + (80 * i), 420)
+            aciertos++;
+            acerto = true;
         }
+        
+    }
+    if(acerto == false){
+        errores++;
+    }
+    if(errores == 9){
+        resultadoJuego(0, errores)
+    }
+    formarMuneco(errores);
 }
 
 
-
-var moverLetrasErroneas = 0;
 
 function dibujarLetrasIncorrecto(texto) {
     pincel.beginPath();
@@ -99,9 +113,8 @@ function dibujarLetrasIncorrecto(texto) {
     pincel.fillText(texto, 300 , 480);
 }
 
-dibujarTexto(palabraSecreta);
-
-switch(intentos){
+function formarMuneco(errores){
+switch(errores){
     case 1:
         trazarFigura(moveToX[1], lineToX[1], moveToY[1], lineToY[1]);
         break;
@@ -152,8 +165,9 @@ switch(intentos){
         trazarCabeza();
         break;
 }
+}
 
-function resultadoJuego(intentos, errores){
+function resultadoJuego(aciertos, errores){
     if(errores = 9){
         pincel.beginPath();
         pincel.clearRect(300,450, 1000, 30);
