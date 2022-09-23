@@ -46,11 +46,9 @@ function dibujarGuion() {
     pincel.lineJoin = "round";
     pincel.strokeStyle = "#0A3871";
     for (var i = 0; i < palabraSecreta.length; i++) {
-
         pincel.moveTo((350) + (80 * i), 430);
         pincel.lineTo((400) + (80 * i), 430);
     }
-
     pincel.stroke();
     pincel.closePath();
 }
@@ -82,12 +80,12 @@ function onKeyDown(evt){
     charCode = evt.key.toUpperCase();
     var codigo = evt.which || evt.keyCode;
 
-    if(codigo >= 65 && codigo <= 90){
+    if(codigo >= 65 && codigo <= 90 && errores<10){
         msg = msg += charCode;
         dibujarLetrasIncorrecto(msg);
     }
     for( let i = 0; i < palabraSecreta.length;i++ ){
-        if( charCode == palabraSecreta[i] ){
+        if( charCode == palabraSecreta[i] && errores<10){
             pincel.fillText(palabraSecreta[i], (360) + (80 * i), 420)
             aciertos++;
             acerto = true;
