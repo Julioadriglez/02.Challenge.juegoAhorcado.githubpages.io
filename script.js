@@ -79,18 +79,18 @@ function onKeyDown(evt){
     pincel.font = "bold 40px arial";
     charCode = evt.key.toUpperCase();
     var codigo = evt.which || evt.keyCode;
-
+   
     if(codigo >= 65 && codigo <= 90 && errores<10){
+        
         msg = msg += charCode;
         dibujarLetrasIncorrecto(msg);
     }
     for( let i = 0; i < palabraSecreta.length;i++ ){
-        if( charCode == palabraSecreta[i] && errores<10){
+        if( charCode == palabraSecreta[i] && errores<10 ){
             pincel.fillText(palabraSecreta[i], (360) + (80 * i), 420)
             aciertos++;
             acerto = true;
         }
-        
     }
     if(acerto == false){
         errores++;
@@ -165,8 +165,8 @@ switch(errores){
 }
 }
 
-function resultadoJuego(aciertos, errores){
-    if(errores = 9){
+function resultadoJuego(acierto, error){
+    if(error = 9){
         pincel.beginPath();
         pincel.clearRect(300,450, 1000, 30);
         pincel.strokeStyle = 'black';
@@ -178,4 +178,11 @@ function resultadoJuego(aciertos, errores){
     }
 }
 
-resultadoJuego(intentos,errores);
+var rendirseJuego = document.getElementById("rendirse").onclick = function rendirse(){
+    errores = 9;
+    resultadoJuego(0, errores);
+    formarMuneco(errores);
+};
+
+
+    
