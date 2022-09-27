@@ -79,29 +79,35 @@ function onKeyDown(evt){
     pincel.font = "bold 40px arial";
     charCode = evt.key.toUpperCase();
     var codigo = evt.which || evt.keyCode;
-   
-    if(codigo >= 65 && codigo <= 90 && errores<10){
-        
-        msg = msg += charCode;
-        dibujarLetrasIncorrecto(msg);
+
+    if(codigo >= 65 && codigo <= 90 && errores<9){
+        var check = msg.includes(charCode);
+        if(check == false){
+            msg = msg += charCode;
+            dibujarLetrasIncorrecto(msg);
+        }
     }
-    for( let i = 0; i < palabraSecreta.length;i++ ){
-        if( charCode == palabraSecreta[i] && errores<10 ){
+    for( let i = 0; i < palabraSecreta.length;i++ && check == false){
+        if( charCode == palabraSecreta[i] && errores<9 && check == false && aciertos != palabraSecreta.length){
             pincel.fillText(palabraSecreta[i], (360) + (80 * i), 420)
             aciertos++;
+            console.log('aciertos: ',aciertos)
             acerto = true;
         }
     }
-    if(acerto == false){
+
+    if(aciertos == palabraSecreta.length){
+        resultadoJuego(2);
+    }
+    if(acerto == false && check == false && aciertos != palabraSecreta.length){
         errores++;
+        console.log('errores: ', errores);
     }
     if(errores == 9){
-        resultadoJuego(0, errores)
+        resultadoJuego(1);
     }
     formarMuneco(errores);
 }
-
-
 
 function dibujarLetrasIncorrecto(texto) {
     pincel.beginPath();
@@ -165,8 +171,8 @@ switch(errores){
 }
 }
 
-function resultadoJuego(acierto, error){
-    if(error = 9){
+function resultadoJuego(resultado){
+    if(resultado == 1){
         pincel.beginPath();
         pincel.clearRect(300,450, 1000, 30);
         pincel.strokeStyle = 'black';
@@ -175,13 +181,24 @@ function resultadoJuego(acierto, error){
         pincel.fillText('!Perdiste, Fin del Juego¡', 850 , 200);
         pincel.fillText('La Palabra era:', 930 , 240);
         pincel.fillText(palabraSecreta, 960 , 280);
-    }
+    } 
+    if(resultado == 2){
+        pincel.beginPath();
+        pincel.clearRect(300,450, 1000, 30);
+        pincel.strokeStyle = 'black';
+        pincel.fillStyle = 'red';
+        pincel.font = "bold 35px arial";
+        pincel.fillText('!Felicidades ganaste¡', 850 , 200);
+    } 
 }
 
 var rendirseJuego = document.getElementById("rendirse").onclick = function rendirse(){
-    errores = 9;
-    resultadoJuego(0, errores);
-    formarMuneco(errores);
+    if(aciertos != palabraSecreta.length){
+        errores = 9;
+        resultadoJuego(1);
+        formarMuneco(errores);
+    }
+    
 };
 
 
